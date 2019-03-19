@@ -6,6 +6,6 @@ router.get('/test', async ctx => {
   ctx.body = 'success requset'
 })
 router.get('/list', Example.list)
-router.post('/creat', Example.creat)
+router.post('/create', Example.creat)
 
 module.exports = router

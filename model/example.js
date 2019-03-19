@@ -7,8 +7,13 @@ const Example = sequelize.define('Example', {
     primaryKey: true,
     autoIncrement: true
   },
-  name: Sequelize.STRING,
-  birthday: Sequelize.DATE
+  name: {
+    type: Sequelize.STRING,
+    unique: {
+      msg: '已添加'
+    }
+  },
+  age: Sequelize.INTEGER
 }, {freezeTableName: true})
 
 // Example.sync({force: true})

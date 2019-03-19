@@ -8,11 +8,19 @@ const list = async (ctx) => {
   }
 }
 const creat = async (ctx) => {
-  console.log(111, ctx.query)
-  await Example.create(ctx.query)
-  ctx.body = {
-    code: 200,
-    data: 'creat success'
+  try {
+    await Example.create(ctx.query)
+    ctx.body = {
+      code: 200,
+      data: 'create success'
+    }
+  }
+  catch(err) {
+    const msg = err.errors[0]
+    ctx.body = {
+      code: 200,
+      data: msg.value + msg.message
+    }
   }
 }
 module.exports = {
