@@ -12,6 +12,7 @@
 /build
 # 因 uglify-js 版本低于2.6.0 github会给出警告
 yarn.lock
+package-lock.json
 # misc
 .DS_Store
 .env.local
