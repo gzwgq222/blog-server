@@ -3,7 +3,7 @@ const list = async (ctx) => {
   const data = await Example.findAll()
   ctx.body = {
     data,
-    code: 200,
+    code: 1000,
     desc: 'success'
   }
 }
@@ -11,7 +11,7 @@ const creat = async (ctx) => {
   try {
     await Example.create(ctx.query)
     ctx.body = {
-      code: 200,
+      code: 1000,
       data: 'create success'
     }
   }

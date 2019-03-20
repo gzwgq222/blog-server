@@ -1,5 +1,7 @@
 const router = require('koa-router')()
 
+const Tag = require('../controllers/tag')
+
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
     title: 'Hello Koa 2!'
@@ -15,5 +17,11 @@ router.get('/json', async (ctx, next) => {
     title: 'koa2 json'
   }
 })
+
+router.get('/tag/list', Tag.list)
+router.get('/tag/list/all', Tag.listAll)
+
+router.post('/tag/create', Tag.create)
+router.post('/tag/destroy', Tag.destroy)
 
 module.exports = router
