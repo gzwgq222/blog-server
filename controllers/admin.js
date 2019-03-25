@@ -1,11 +1,13 @@
 const Tag = require('../model/admin')
+const Op = require('sequelize').Op
 
 const loginIn = async (ctx) => {
   const user = ctx.request.body
-  console.log(111, user)
   const data = await Tag.findOne({
     where: {
-      name: user.userName,
+      name: {
+        [Op.eq]: `${user.userName}`
+      },
       password: user.password
     }
   })
