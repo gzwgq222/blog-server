@@ -2,6 +2,7 @@ const router = require('koa-router')()
 
 const Tag = require('../controllers/tag')
 const Admin = require('../controllers/admin')
+const Category = require('../controllers/category')
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -19,12 +20,21 @@ router.get('/json', async (ctx, next) => {
   }
 })
 
+// tag
 router.get('/tag/list', Tag.list)
 router.get('/tag/list/all', Tag.listAll)
 
 router.post('/tag/create', Tag.create)
 router.post('/tag/destroy', Tag.destroy)
 
+// category
+router.get('/category/list', Category.list)
+router.get('/category/list/all', Category.listAll)
+
+router.post('/category/create', Category.create)
+router.post('/category/destroy', Category.destroy)
+
+// login
 router.post('/loginIn', Admin.loginIn)
 
 module.exports = router
