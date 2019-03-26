@@ -1,5 +1,6 @@
 const sequelize = require('../sequelize ')
 const Sequelize = require('sequelize')
+const moment = require('moment')
 
 const category = sequelize.define('category', {
   id: {
@@ -12,7 +13,24 @@ const category = sequelize.define('category', {
     unique: {
       msg: '已添加'
     }
+  },
+  createdAt: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW,
+    get() {
+      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW,
+    get() {
+      return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss')
+    }
   }
-}, {freezeTableName: true})
+},
+{
+  freezeTableName: true
+})
 
 module.exports = category
