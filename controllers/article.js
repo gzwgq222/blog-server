@@ -1,6 +1,14 @@
 const Article = require('../model/article')
 const Op = require('sequelize').Op
 
+const listAll = async (ctx) => {
+  const data = await Article.findAll()
+  ctx.body = {
+    code: 1000,
+    data
+  }
+}
+
 const list = async (ctx) => {
   const query = ctx.query
   // const where = {
@@ -11,7 +19,14 @@ const list = async (ctx) => {
   const {rows:data, count: total } = await Article.findAndCountAll({
     // where,
     offset: (+query.pageNo - 1) * +query.pageSize,
-    limit: +query.pageSize
+    limit: +query.pageSize,
+    order: [
+      ['createdAt', 'DESC']
+    ]
+  })
+  data.forEach(v => {
+    v.tag = v.tag.split(',')
+    v.category = v.category.split(',')
   })
   ctx.body = {
     data,
@@ -53,6 +68,7 @@ const destroy = async ctx => {
 }
 module.exports = {
   list,
+  listAll,
   create,
   destroy
 }

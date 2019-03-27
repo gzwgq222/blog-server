@@ -2,24 +2,14 @@ const sequelize = require('../sequelize ')
 const Sequelize = require('sequelize')
 const moment = require('moment')
 
-const article = sequelize.define('article', {
+const star = sequelize.define('star', {
   id: {
     type: Sequelize.INTEGER(11),
     primaryKey: true,
     autoIncrement: true
   },
-  title: {
-    allowNull: false,
-    type: Sequelize.STRING(255),
-    unique: {
-      msg: '已添加'
-    }
-  },
-  author: Sequelize.STRING,
-  desc: Sequelize.STRING,
-  category: Sequelize.STRING,
-  tag: Sequelize.STRING,
-  content: Sequelize.TEXT,
+  title: Sequelize.STRING,
+  url: Sequelize.STRING,
   createdAt: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
@@ -39,4 +29,4 @@ const article = sequelize.define('article', {
   freezeTableName: true
 })
 
-module.exports = article
+module.exports = star

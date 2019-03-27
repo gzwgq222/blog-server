@@ -18,14 +18,14 @@ const tag = sequelize.define('tag', {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
     get() {
-      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss')
+      return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm')
     }
   },
   updatedAt: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
     get() {
-      return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss')
+      return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm')
     }
   }
 },
