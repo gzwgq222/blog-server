@@ -19,7 +19,10 @@ const list = async (ctx) => {
   const {rows:data, count: total } = await Tag.findAndCountAll({
     where,
     offset: (+query.pageNo - 1) * +query.pageSize,
-    limit: +query.pageSize
+    limit: +query.pageSize,
+    order: [
+      ['createdAt', 'DESC']
+    ]
   })
   ctx.body = {
     data,

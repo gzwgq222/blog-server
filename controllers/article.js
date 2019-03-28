@@ -60,7 +60,11 @@ const list = async (ctx) => {
 }
 
 const listAll = async (ctx) => {
-  const data = await Article.findAll()
+  const data = await Article.findAll({
+    order: [
+      ['createdAt', 'DESC']
+    ]
+  })
   ctx.body = {
     code: 1000,
     data
