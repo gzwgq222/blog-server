@@ -6,14 +6,26 @@ const item = async ctx => {
     id: ctx.query.id
   }
   const data = await Article.findOne({where})
+  data.tag = data.tag.split(',')
+  data.category = data.category.split(',')
   ctx.body = {
     code: 1000,
     data
   }
 }
-
-const listAll = async (ctx) => {
-  const data = await Article.findAll()
+// 访问文章详情 readedCount +1
+const detail = async ctx => {
+  const where = {
+    id: ctx.query.id
+  }
+  let {readedCount} = await Article.findOne({where})
+  readedCount++
+  await Article.update({readedCount},
+    {where}
+  )
+  const data = await Article.findOne({where})
+  data.tag = data.tag.split(',')
+  data.category = data.category.split(',')
   ctx.body = {
     code: 1000,
     data
@@ -46,7 +58,29 @@ const list = async (ctx) => {
     desc: 'success'
   }
 }
-const create = async (ctx) => {
+
+const listAll = async (ctx) => {
+  const data = await Article.findAll()
+  ctx.body = {
+    code: 1000,
+    data
+  }
+}
+
+const update = async ctx => {
+  const {id, title, author, summary, category, tag, content} = ctx.request.body
+  const data =  await Article.update({id, title, author, summary, category, tag, content},
+    {where: {id}}
+  )
+  ctx.body = {
+    code: 1000,
+    data,
+    desc: '修改成功'
+  }
+}
+
+
+const create = async ctx => {
   const params = ctx.request.body
   if (!params.title) {
     ctx.body = {
@@ -82,5 +116,7 @@ module.exports = {
   listAll,
   create,
   destroy,
-  item
+  item,
+  detail,
+  update
 }

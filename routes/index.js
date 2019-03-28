@@ -47,10 +47,12 @@ router.post('/category/destroy', Category.destroy)
 
 // Article
 router.get('/article/list', Article.list)
-router.get('/article/item', Article.item)
 router.get('/article/list/all', Article.listAll)
+router.get('/article/item', Article.item)
+router.get('/article/detail', Article.detail)
 
 router.post('/article/create', Article.create)
+router.post('/article/update', Article.update)
 router.post('/article/destroy', Article.destroy)
 
 module.exports = router

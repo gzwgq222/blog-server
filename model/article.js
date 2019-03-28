@@ -15,8 +15,12 @@ const article = sequelize.define('article', {
       msg: '已添加'
     }
   },
+  readedCount: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
   author: Sequelize.STRING,
-  desc: Sequelize.STRING,
+  summary: Sequelize.STRING,
   category: Sequelize.STRING,
   tag: Sequelize.STRING,
   content: Sequelize.TEXT,
